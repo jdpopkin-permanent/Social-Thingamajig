@@ -8,6 +8,7 @@ SocialThinkamajig::Application.routes.draw do
 
   resources :friend_circles, except: [:index]
 
+  resources :posts
 
 
 

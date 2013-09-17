@@ -1,0 +1,40 @@
+<h1> New Post </h1>
+
+<form action="<%=posts_url%>" method='post'>
+    <input type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+
+    <input type="hidden" name="post[user_id]" value="<%= current_user.id %>">
+
+    <label>
+      Body
+      <textarea name="post[body]"> </textarea>
+    </label>
+    <br>
+    <label>
+      Link 1
+      <input type="text" name="link[url][]">
+    </label>
+    <br>
+    <label>
+      Link 2
+      <input type="text" name="link[url][]">
+    </label>
+    <br>
+    <label>
+      Link 3
+      <input type="text" name="link[url][]">
+    </label>
+    <br>
+
+    <% current_user.owned_friend_circles.each do |fc| %>
+    <label>
+      <%= fc.name %>
+      <input type="checkbox" name="post[friend_circle_ids][]"
+       value="<%=fc.id%>">
+    </label>
+    <% end %>
+
+    <input type="submit">
+</form>

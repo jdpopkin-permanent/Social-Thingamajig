@@ -18,6 +18,16 @@ class FriendCircle < ActiveRecord::Base
             through: :friend_circle_memberships,
             source: :friend
 
+  has_many :post_shares,
+            class_name: "PostShare",
+            primary_key: :id,
+            foreign_key: :friend_circle_id
+
+  has_many :posts,
+            through: :post_shares,
+            source: :post
+
+
   def friend_ids=(user_id_arr)
     users = user_id_arr.map do |id|
       User.find(id)

@@ -1,0 +1,18 @@
+<p>
+  <%= @post.body %>
+</p>
+
+<% @post.links.each do |link| %>
+  <br>
+  <%= link.url %>
+<% end %>
+
+<h4>This post was shared with the following circles:</h4>
+
+<ul>
+<% @post.friend_circles.each do |fc| %>
+  <li>
+    <%= fc.name%>
+  </li>
+<% end %>
+</ul>
