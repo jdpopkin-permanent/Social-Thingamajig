@@ -9,6 +9,24 @@ class User < ActiveRecord::Base
 
   before_validation { |user| user.reset_session_token!(false) }
 
+  has_many(
+    :owned_friend_circles,
+    class_name: "FriendCircle",
+    primary_key: :id,
+    foreign_key: :user_id
+  )
+
+  has_many  :friend_circle_memberships,
+            class_name: 'FriendCircleMembership',
+            foreign_key: :user_id,
+            primary_key: :id,
+            dependent: :destroy
+
+  has_many  :member_friend_circles,
+            through: :friend_circle_memberships,
+            source: :friend_circle
+
+
   def reset_session_token!(force = true)
     return unless self.session_token.nil? || force
     self.session_token = SecureRandom::urlsafe_base64(16)

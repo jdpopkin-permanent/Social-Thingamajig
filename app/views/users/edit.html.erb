@@ -1,0 +1,17 @@
+<h1>Welcome <%= @user.email %></h1>
+<br>
+<h2>Reset your password here!</h2>
+
+<form action="<%=user_url(@user)%>" method='post'>
+  <input type='hidden' name='_method' value='put'>
+  <input type='hidden'
+          name='authenticity_token'
+          value="<%= form_authenticity_token %>">
+
+  <label>
+    Password
+    <input type='password' name='user[password]'>
+  </label>
+
+  <input type='submit'>
+</form>

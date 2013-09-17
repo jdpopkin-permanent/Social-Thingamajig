@@ -1,0 +1,12 @@
+<h1> !!!FriendCircles!!! </h1>
+
+<h2> <%= @friend_circle.name %> </h2>
+
+<h3> Owner: <%=@friend_circle.user.email %> </h3>
+
+
+<ul>
+<% @friend_circle.friends.each do |friend| %>
+  <li><%= friend.email %></li>
+<% end %>
+</ul>

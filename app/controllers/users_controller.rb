@@ -21,11 +21,25 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    @user = User.find(params[:id])
+    @key = params[:key]
+    if @user.reset_key == params[:key]
+      render :edit
+    else
+      redirect_to new_session_url
+    end
   end
 
   def update
+    user = User.find(params[:id])
+    user.password = params[:user][:password]
+    if user.save
+      redirect_to new_session_url
+    else
+      @user = user
 
+      render :edit
+    end
   end
 
 end

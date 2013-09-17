@@ -4,7 +4,13 @@ SocialThinkamajig::Application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy] do
     post 'reset_password', on: :member
-  end # check if singular
+  end
+
+  resources :friend_circles, except: [:index]
+
+
+
+
 
 
   # The priority is based upon order of creation:
