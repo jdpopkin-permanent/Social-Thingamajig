@@ -1,0 +1,15 @@
+<%= render "layouts/user", url: session_url %>
+
+
+<h3>Reset Password</h3>
+<form action="<%= reset_password_session_url %>" method='post'>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>
+    email
+    <input type='text', name='user[email]'>
+  </label>
+
+  <input type='submit'>
+
+</form>
